@@ -16,7 +16,7 @@ jobs:
       options: --cpus 1
 
     steps:
-      - uses: actions/JLPD-TEST
+      - uses: actions/checkout@v3
       - name: Install
         run: yarn install
       - name: Typescript compilation
@@ -24,7 +24,7 @@ jobs:
           npm install -g typescript
           tsc
       - name: Generating artifacts
-        uses: actions/upload-artifacts@v3
+        uses: actions/checkout@v3
         with:
           name: node-modules
           path: node_modules/**
