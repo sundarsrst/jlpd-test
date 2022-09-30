@@ -16,7 +16,7 @@ jobs:
       options: --cpus 1
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/JLPD-TEST
       - name: Install
         run: yarn install
       - name: Typescript compilation
