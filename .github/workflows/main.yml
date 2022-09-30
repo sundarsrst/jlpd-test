@@ -29,3 +29,53 @@ jobs:
           name: node-modules
           path: node_modules/**
 
+  Typescript:
+    runs-on: ubuntu-latest
+    container:
+      image: node:16.15.0
+      ports:
+        - 3000
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1
+
+    steps:
+      - uses: actions/download-artifact@v3
+      - name: Typescript compilation
+        run: | 
+          npm install -g typescript
+          tsc
+      - name: Generating artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/**
+      - name: prettier-formatting
+        run: |
+          yarn run prettier-format
+          yarn run prettier-check
+      - name: test
+        run: yarn run test
+
+  build-docker:
+    runs-on: ubuntu-latest
+    container:
+      image: node:16.15.0
+      ports:
+        - 3000
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install
+        run: | 
+          docker build -t glean/baivab/1 .
+          docker save --output glean-baivab-image.docker glean/baivab/1
+      - name: Generating artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker file
+          path: glean-baivab-image.docker
+
