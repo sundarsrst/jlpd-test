@@ -7,16 +7,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: node:16.15.0
-      ports:
-        - 3000
-      volumes:
-        - my_docker_volume:/volume_mount
-      options: --cpus 1
 
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.0
 
       - name: Install
         run: yarn install
@@ -38,7 +34,7 @@ jobs:
         run: | 
           docker build -t glean/baivab/1 .
           docker save --output glean-baivab-image.docker glean/baivab/1
-          
+
       - name: Generating artifacts
         uses: actions/upload-artifact@v3
         with:
