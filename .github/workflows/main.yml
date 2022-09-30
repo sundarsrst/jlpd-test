@@ -24,7 +24,7 @@ jobs:
           npm install -g typescript
           tsc
       - name: Generating artifacts
-        uses: actions/checkout@v3
+        uses: actions/upload-artifact@v3
         with:
           name: node-modules
           path: node_modules/**
