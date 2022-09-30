@@ -32,7 +32,7 @@ jobs:
 
       - name: Build the docker image
         run: | 
-          docker build -t glean/baivab:${{ env.GITHUB_SHA }} .
+          docker build -t glean/baivab:${GITHUB_SHA} .
 
       - name: Generating artifacts
         uses: actions/upload-artifact@v3
