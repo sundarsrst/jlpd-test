@@ -38,6 +38,6 @@ jobs:
       - name: Generating artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: docker file
-          path: glean-baivab-image.docker
+          name: test coverage
+          path: coverage
 
