@@ -11,13 +11,13 @@ WORKDIR /usr/src/app
 COPY package.json .
 
 # Install the required packages
-RUN npm install
+RUN yarn install
 
 # Copy all other source code to work directory
 ADD . /usr/src/app
 
 # Start Application
-CMD [ "npm", "start" ]
+CMD [ "yarn", "serve" ]
 
 #expose app to desired port
 EXPOSE 3000 
