@@ -30,14 +30,17 @@ jobs:
       - name: test
         run: yarn run test
 
-      - name: Build the docker image
-        run: | 
-          docker build -t glean/baivab/1 .
-          docker save --output glean-baivab-image.docker glean/baivab/1
+      # - name: Build the docker image
+      #   run: | 
+      #     docker build -t glean/baivab/1 .
+      #     docker save --output glean-baivab-image.docker glean/baivab/1
+
+      - name: list folder 
+        run: ls -la
 
       - name: Generating artifacts
         uses: actions/upload-artifact@v3
         with:
           name: test coverage
-          path: coverage
+          path: coverage/**
 
