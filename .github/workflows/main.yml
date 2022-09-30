@@ -20,9 +20,7 @@ jobs:
       - name: Install
         run: yarn install
       - name: Typescript compilation
-        run: | 
-          npm install -g typescript
-          tsc
+        run: npm install -g typescript && tsc
       - name: Generating artifacts
         uses: actions/upload-artifact@v3
         with:
